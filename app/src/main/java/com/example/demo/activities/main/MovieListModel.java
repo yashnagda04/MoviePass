@@ -16,7 +16,7 @@ import retrofit2.Response;
 public class MovieListModel implements MovieListContract.Model {
 
     private final String TAG = "MovieListModel";
-    private final String API_KEY = "727527f479d25c4ef62860b6b1c3fd07";
+    private final String API_KEY = "Your_API_KEY";
 
 
     /**
