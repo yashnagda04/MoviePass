@@ -1,6 +1,6 @@
-package com.example.demo.network;
+package com.example.demo.data.network;
 
-import com.example.demo.model.MovieListResponse;
+import com.example.demo.data.model.MovieListResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

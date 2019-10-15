@@ -1,6 +1,7 @@
-package com.example.demo.activities.main;
+package com.example.demo.presentation.main;
 
-import com.example.demo.model.Movie;
+import com.example.demo.data.model.Movie;
+import com.example.demo.data.repository.MovieListImpl;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class MovieListPresenter implements MovieListContract.Presenter, MovieLis
 
     public MovieListPresenter(MovieListContract.View movieListView) {
         this.movieListView = movieListView;
-        movieListModel = new MovieListModel();
+        movieListModel = new MovieListImpl();
     }
 
     @Override

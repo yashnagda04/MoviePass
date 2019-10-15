@@ -1,6 +1,6 @@
-package com.example.demo.activities.main;
+package com.example.demo.presentation.main;
 
-import com.example.demo.model.Movie;
+import com.example.demo.data.model.Movie;
 
 import java.util.List;
 

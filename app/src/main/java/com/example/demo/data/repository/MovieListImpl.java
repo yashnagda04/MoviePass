@@ -1,11 +1,12 @@
-package com.example.demo.activities.main;
+package com.example.demo.data.repository;
 
 import android.util.Log;
 
-import com.example.demo.model.Movie;
-import com.example.demo.model.MovieListResponse;
-import com.example.demo.network.ApiClient;
-import com.example.demo.network.ApiInterface;
+import com.example.demo.data.model.Movie;
+import com.example.demo.data.model.MovieListResponse;
+import com.example.demo.data.network.ApiClient;
+import com.example.demo.data.network.ApiInterface;
+import com.example.demo.presentation.main.MovieListContract;
 
 import java.util.List;
 
@@ -13,10 +14,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MovieListModel implements MovieListContract.Model {
+public class MovieListImpl implements MovieListContract.Model {
 
-    private final String TAG = "MovieListModel";
-    private final String API_KEY = "Your_API_KEY";
+    private final String TAG = "MovieListImpl";
+    private final String API_KEY = "727527f479d25c4ef62860b6b1c3fd07";
 
 
     /**

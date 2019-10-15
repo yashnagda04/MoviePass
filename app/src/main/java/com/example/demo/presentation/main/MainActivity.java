@@ -1,35 +1,38 @@
-package com.example.demo.activities.main;
+package com.example.demo.presentation.main;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.demo.R;
 import com.example.demo.adapter.MoviesAdapter;
-import com.example.demo.model.Movie;
+import com.example.demo.data.model.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements MovieListContract.View,
-        ShowEmptyView,MovieItemClickListener {
+        MovieItemClickListener {
+
+    @BindView(R.id.rv_movie_list)
+    RecyclerView rvMovieList;
+    @BindView(R.id.pb_loading)
+    ProgressBar pbLoading;
 
     private static final String TAG = "MainActivity";
     private MovieListPresenter movieListPresenter;
-    private RecyclerView rvMovieList;
     private List<Movie> moviesList;
     private MoviesAdapter moviesAdapter;
-    private ProgressBar pbLoading;
-    private TextView tvEmptyView;
-
     private int pageNo = 1;
 
     //Constants for load more
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements MovieListContract
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         initUI();
 
         setListeners();
@@ -55,15 +59,14 @@ public class MainActivity extends AppCompatActivity implements MovieListContract
 
     private void initUI() {
 
-        rvMovieList = findViewById(R.id.rv_movie_list);
         moviesList = new ArrayList<>();
         moviesAdapter = new MoviesAdapter(this, moviesList);
         mLayoutManager = new GridLayoutManager(this, 2);
         rvMovieList.setLayoutManager(mLayoutManager);
         rvMovieList.setItemAnimator(new DefaultItemAnimator());
         rvMovieList.setAdapter(moviesAdapter);
-        pbLoading = findViewById(R.id.pb_loading);
-        tvEmptyView = findViewById(R.id.tv_empty_view);
+
+
     }
 
 
@@ -126,19 +129,6 @@ public class MainActivity extends AppCompatActivity implements MovieListContract
     protected void onDestroy() {
         super.onDestroy();
         movieListPresenter.onDestroy();
-    }
-
-    @Override
-    public void showEmptyView() {
-        rvMovieList.setVisibility(View.GONE);
-        tvEmptyView.setVisibility(View.VISIBLE);
-
-    }
-
-    @Override
-    public void hideEmptyView() {
-        rvMovieList.setVisibility(View.VISIBLE);
-        tvEmptyView.setVisibility(View.GONE);
     }
 
     @Override

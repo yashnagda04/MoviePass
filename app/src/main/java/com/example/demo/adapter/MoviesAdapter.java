@@ -21,11 +21,14 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.example.demo.R;
-import com.example.demo.activities.main.MainActivity;
-import com.example.demo.model.Movie;
-import com.example.demo.network.ApiClient;
+import com.example.demo.data.model.Movie;
+import com.example.demo.data.network.ApiClient;
+import com.example.demo.presentation.main.MainActivity;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHolder>
@@ -102,20 +105,20 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.tv_movie_title)
         TextView tvMovieTitle;
+        @BindView(R.id.tv_movie_ratings)
         TextView tvMovieRatings;
+        @BindView(R.id.tv_release_date)
         TextView tvReleaseDate;
+        @BindView(R.id.iv_movie_thumb)
         ImageView ivMovieThumb;
+        @BindView(R.id.pb_load_image)
         ProgressBar pbLoadImage;
 
         MyViewHolder(View itemView) {
             super(itemView);
-
-            tvMovieTitle = itemView.findViewById(R.id.tv_movie_title);
-            tvReleaseDate = itemView.findViewById(R.id.tv_release_date);
-            tvMovieRatings = itemView.findViewById(R.id.tv_movie_ratings);
-            ivMovieThumb = itemView.findViewById(R.id.iv_movie_thumb);
-            pbLoadImage = itemView.findViewById(R.id.pb_load_image);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

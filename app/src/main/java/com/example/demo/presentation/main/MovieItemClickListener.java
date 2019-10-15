@@ -1,4 +1,4 @@
-package com.example.demo.activities.main;
+package com.example.demo.presentation.main;
 
 public interface MovieItemClickListener {
 

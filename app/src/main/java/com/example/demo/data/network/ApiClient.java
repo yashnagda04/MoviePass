@@ -1,6 +1,4 @@
-package com.example.demo.network;
-
-import com.google.gson.GsonBuilder;
+package com.example.demo.data.network;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
