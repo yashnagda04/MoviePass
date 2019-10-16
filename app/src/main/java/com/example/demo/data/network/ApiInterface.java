@@ -10,4 +10,7 @@ public interface ApiInterface {
 
     @GET("movie/popular")
     Call<MovieListResponse> getPopularMovies(@Query("api_key") String apiKey, @Query("page") int PageNo);
+
+    @GET("search/movie")
+    Call<MovieListResponse> getSearchedMovies(@Query("api_key") String apiKey, @Query("query") String query, @Query("page") int PageNo);
 }

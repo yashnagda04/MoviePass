@@ -5,7 +5,8 @@ import com.example.demo.data.repository.MovieListImpl;
 
 import java.util.List;
 
-public class MovieListPresenter implements MovieListContract.Presenter, MovieListContract.Model.OnFinishedListener {
+public class MovieListPresenter implements MovieListContract.Presenter,
+        MovieListContract.Model.OnFinishedListener, MovieListContract.Model.OnSearchFinishedListener {
 
     private MovieListContract.View movieListView;
     private MovieListContract.Model movieListModel;
@@ -39,6 +40,22 @@ public class MovieListPresenter implements MovieListContract.Presenter, MovieLis
     }
 
     @Override
+    public void searchMovie(String query) {
+        if (movieListView != null) {
+            movieListView.showProgress();
+        }
+        movieListModel.getSearchedMovies(this, query, 1);
+    }
+
+    @Override
+    public void getMoreSearchMovie(String query, int pageNo) {
+        if (movieListView != null) {
+            movieListView.showProgress();
+        }
+        movieListModel.getSearchedMovies(this, query, pageNo);
+    }
+
+    @Override
     public void onFinished(List<Movie> movieArrayList) {
         movieListView.setDataToRecyclerView(movieArrayList);
         if (movieListView != null) {
@@ -53,5 +70,19 @@ public class MovieListPresenter implements MovieListContract.Presenter, MovieLis
         if (movieListView != null) {
             movieListView.hideProgress();
         }
+    }
+
+
+    @Override
+    public void onSearchFinished(List<Movie> searchMovieArrayList) {
+        movieListView.setDataToRecyclerView(searchMovieArrayList);
+        if (movieListView != null) {
+            movieListView.hideProgress();
+        }
+    }
+
+    @Override
+    public void onSearchFailure(Throwable t) {
+
     }
 }

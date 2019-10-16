@@ -16,6 +16,14 @@ public interface MovieListContract {
 
         void getMovieList(OnFinishedListener onFinishedListener, int pageNo);
 
+        void getSearchedMovies(OnSearchFinishedListener onSearchFinishedListener, String query, int pageNo);
+
+        interface OnSearchFinishedListener {
+            void onSearchFinished(List<Movie> searchMovieArrayList);
+
+            void onSearchFailure(Throwable t);
+        }
+
     }
 
     interface View {
@@ -37,6 +45,10 @@ public interface MovieListContract {
         void getMoreData(int pageNo);
 
         void requestDataFromServer();
+
+        void searchMovie(String query);
+
+        void getMoreSearchMovie(String query, int pageNo);
 
     }
 }
